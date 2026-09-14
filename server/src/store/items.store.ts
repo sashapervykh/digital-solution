@@ -1,8 +1,9 @@
+import { getSelectedSet } from "./selected.store.js";
+
 const INITIAL_AMOUNT = 1_000_000;
 
 const store = {
   items: new Map<string, { id: string }>(),
-  selected: new Set(),
 };
 
 for (let i = 1; i <= INITIAL_AMOUNT; i++) {
@@ -19,13 +20,14 @@ export function getLeftWindowItems({
   limit?: number;
   search?: string;
 }) {
+  const selected = getSelectedSet();
   const result = [];
   const offset = (page - 1) * limit;
   const searchStr = search?.trim() ?? "";
   let skipped = 0;
 
   for (const item of store.items.values()) {
-    if (store.selected.has(item.id)) {
+    if (selected.has(item.id)) {
       continue;
     }
 
