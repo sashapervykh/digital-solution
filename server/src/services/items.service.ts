@@ -1,4 +1,4 @@
-import { getLeftWindowItems } from "../store/store.js";
+import { addItemToStore, getLeftWindowItems } from "../store/store.js";
 
 interface GetItemsParams {
   search?: string;
@@ -8,4 +8,8 @@ interface GetItemsParams {
 
 export function getLeftItems({ search, page, limit }: GetItemsParams) {
   return getLeftWindowItems({ search, page, limit });
+}
+
+export function addItem(id: string) {
+  return addItemToStore(id);
 }

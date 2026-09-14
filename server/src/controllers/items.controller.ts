@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getLeftItems } from "../services/items.service.js";
+import { addItem, getLeftItems } from "../services/items.service.js";
 
 export function getItemsHandler(req: Request, res: Response): void {
   const search =
@@ -13,5 +13,23 @@ export function getItemsHandler(req: Request, res: Response): void {
   }
 
   const result = getLeftItems({ search, page, limit });
+  res.json(result);
+}
+
+export function addItemHandler(req: Request, res: Response): void {
+  const id = typeof req.query.id === "string" ? req.query.id : undefined;
+
+  if (!id) {
+    res.status(400).json({ error: "Invalid id" });
+    return;
+  }
+
+  const result = addItem(id);
+
+  if (!result) {
+    res.status(400).json({ error: `Id ${id} already exists` });
+    return;
+  }
+
   res.json(result);
 }

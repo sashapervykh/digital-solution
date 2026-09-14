@@ -52,8 +52,8 @@ export function getLeftWindowItems({
   };
 }
 
-export function addItem(id: string) {
-  if (!store.items.has(id)) {
-    store.items.set(id, { id });
-  }
+export function addItemToStore(id: string) {
+  if (store.items.has(id)) return;
+  store.items.set(id, { id });
+  return { id };
 }
