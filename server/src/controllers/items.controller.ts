@@ -17,7 +17,7 @@ export function getItemsHandler(req: Request, res: Response): void {
 }
 
 export function addItemHandler(req: Request, res: Response): void {
-  const id = typeof req.query.id === "string" ? req.query.id : undefined;
+  const id = typeof req.body.id === "string" ? req.body.id : undefined;
 
   if (!id) {
     res.status(400).json({ error: "Invalid id" });

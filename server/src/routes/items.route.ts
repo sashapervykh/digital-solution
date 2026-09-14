@@ -4,9 +4,9 @@ import {
   getItemsHandler,
 } from "../controllers/items.controller.js";
 
-const router = Router();
+const itemsRouter = Router();
 
-router.get("/", getItemsHandler);
-router.post("/", addItemHandler);
+itemsRouter.get("/", getItemsHandler);
+itemsRouter.post("/", addItemHandler);
 
-export default router;
+export default itemsRouter;
